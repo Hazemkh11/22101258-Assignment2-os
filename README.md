@@ -21,3 +21,32 @@ simple_program: simple_program.c
 clean:
 	rm -f $(programs)
 
+answers.txt file contains:
+exercise 1 – fork explanation
+the fork thing makes a new process by copying the one that is already running. the first one is the parent and the new one is the child. when fork happens both of them run the same code but they have different pid numbers if fork gives 0 then it is the child. if it gives a number bigger than 0 then it is the parent. if it gives -1 then it did not work.
+
+exercise 2– starting processes in the background
+when you write a command and put a & at the end like sleep 300 & it will run in the background this means the terminal is free and you can write other stuff. when you type jobs it shows the things running in the background.
+
+exercise 3– stopping processes
+to stop a process you first find its pid by using ps aux | grep sleep. after you see the number you can do kill pid to stop it this sends a signal to stop the process. then when you do ps aux | grep sleep again you will see that it is not running anymore.
+
+exercise 4 – pausing and resuming a process
+you can pause a process by doing kill -stop pid and it will freeze there. if you want it to move again you do kill -cont pid and it will keep going.
+
+exercise 5– role of the linker
+the linker puts many code files together. file1 has a function and file2 uses it. the linker makes them work as one program. if you change one file and compile again the linker updates the program so the new parts work.
+
+exercise 6– role of the loader
+the loader puts the program in memory so it can run. it also brings the shared libraries needed by the program. when you use ldd on simple program you can see the list of libraries it needs. when the program runs the loader loads these libraries so the program can use them
+
+what is the job of the linker->the linker takes many small pieces of code and puts them together into one big program.
+when the compiler makes .o files they are not ready yet, so the linker connects them and makes sure all the functions and stuff point to the right place.
+it also adds the system things the program needs.
+when it is done you get the final program you can run
+
+***what is the job of the loader->***the loader is part of the operating system
+its job is to take the finished program from the disk and put it in memory so it can run
+it sets up the space for it and gets the stack and heap ready.
+after that it starts the program by jumping to where main begins
+
